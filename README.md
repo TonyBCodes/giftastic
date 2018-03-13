@@ -28,3 +28,45 @@ Only once you get images displaying with button presses should you move on to th
 Add a form to your page takes the value from a user input box and adds it into your topics array. Then make a function call that takes each topic in the array remakes the buttons on the page.
 Deploy your assignment to Github Pages.
 Rejoice! You just made something really cool.
+
+Hit the GIPHY API.
+https://developers.giphy.com/
+p7EZTvRV6Tqdy1gJT54MsoWVyp7sjVNs
+
+
+Fool around with the GIPHY API. Giphy API.
+Be sure to read about these GIPHY parameters (hint, hint):
+
+q
+limit
+rating
+
+Like many APIs, GIPHY requires developers to use a key to access their API data. To use the GIPHY API, you'll need a GIPHY account (don't worry, it's free!) and then obtain an API Key by creating an app.
+Make sure you switch the protocol in the query URL from http to https, or the app may not work properly when deployed to Github Pages.
+
+
+create an array with prefilled topics
+make buttons using the information in the array
+create an input field to get new topics
+create a new button for the new topic
+create an ajax call to pull data from glipghy when the button is clicked
+clear the space where the gifs will be shown
+pull in/show 10 gifs for the topic
+click the gif to stop the motion?
+
+Bonus Goals
+
+Ensure your app is fully mobile responsive.
+
+Allow users to request additional gif's to be added to the page.
+
+Each request should ADD 10 gif's to the page, NOT overwrite the existing gifs.
+
+List additional metadata (title, tags, etc) for each gif in a clean and readable format.
+Include a 1-click download button for each gif, this should work across device types.
+Integrate this search with additional api's such as OMDB, or Bands in Town. Be creative and build something you are proud to showcae in your portfolio
+
+Allow users to add their favorite gif's to a favorites section.
+
+This should persist even when they select or add a new topic.
+If you are looking for a major challenge, look into making this section persist even when the page is reloaded(via localStorage or cookies).
