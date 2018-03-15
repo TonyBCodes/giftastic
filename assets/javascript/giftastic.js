@@ -1,17 +1,8 @@
 $(document).ready(function () {
 
-
-
-
-
-    // show 10 gifs for the topic
-    // click the gif to stop the motion?
-
     //----- global variables-----------------------------------
     // create an array with prefilled topics
-    var topics = ["cats", "dogs", "mice", "horse", "elephants"];
-
-
+    var topics = ["Volkswagen", "Lamborghini", "Audi", "Porsche", "Bugatti"];
 
     //----- functions------------------------------------------
     function makebuttons(btnnam) {
@@ -27,19 +18,13 @@ $(document).ready(function () {
 
     function showgifs(gifs) {
         for (var i = 0; i < gifs.length; i++) {
-
-            // // $("#displarea").append("<img src="+gifs[i].url+"&quot />");
-            // var imgurl = gifs[i].images.downsized.url;
-            // // img = $("img").attr("src", imgurl);
-            // $("#displarea").append("src",imgurl);
-
-
             var img = $("<img>"); //Equivalent: $(document.createElement('img'))
-            img.attr('src', gifs[i].images.downsized.url);
+            img.attr('src', gifs[i].images.downsized_still.url);
+            img.attr("id","img"+i);
+            img.attr("moving","n");
             img.appendTo("#displarea");           
         }
     }
-
 
     //----- end of functions-----------------------------------
 
@@ -63,21 +48,28 @@ $(document).ready(function () {
 
         // create an ajax call to pull data from glipghy when the button is clicked
         $.ajax({ url: "http://api.giphy.com/v1/gifs/search?q=" + seltopic + "&api_key=p7EZTvRV6Tqdy1gJT54MsoWVyp7sjVNs&limit=10&rating=g", method: "GET" }).then(function (response) {
-            console.log(response);
-            console.log(response.data);
+
             // clear the space where the gifs will be shown
             $("#displarea").empty();
             showgifs(response.data);
 
+            // click the gif to start and stop the motion
+            $("#displarea").click(function(){
+                var selimage=event.target.id;
+                var ind=parseInt(selimage.charAt(3));
+
+                if ($("#"+selimage).attr("moving")==="n") {
+                    $("#" + selimage).attr("src", response.data[ind].images.downsized.url);
+                    $("#" + selimage).attr("moving", "y");
+                }
+                else {
+                    $("#" + selimage).attr("src", response.data[ind].images.downsized_still.url);
+                    $("#" + selimage).attr("moving", "n");
+                }
+            });
+
         });
 
     });
-
-
-
-
-
-    // });
-
 
 });
